@@ -3,8 +3,8 @@
 
   import * as AboutMe from "$lib/aboutMe";
 
-  import Discord from "../components/Discord.svelte";
-  import Spotify from "../components/Spotify.svelte";
+  import Discord from "../../components/Discord.svelte";
+  import Spotify from "../../components/Spotify.svelte";
 
   export let data: PageData;
 </script>

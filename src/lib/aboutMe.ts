@@ -6,4 +6,5 @@ export const links = {
   Codeberg: "https://codeberg.org/lunaa",
   Fedi: "https://wetdry.world/@lunaa",
   Bluesky: "https://bsky.app/profile/lvna.gay",
+  Shiggy: "https://lvna.gay/shiggy",
 };
