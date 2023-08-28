@@ -4,7 +4,6 @@
   import { defaultData } from "$lib/spotify";
 
   import Fa from "svelte-fa";
-  console.log("b");
 
   import { faDiscord, faSpotify } from "@fortawesome/free-brands-svg-icons";
   import {
@@ -12,31 +11,13 @@
     faFolderClosed,
     faMicrophoneLines,
   } from "@fortawesome/free-solid-svg-icons";
-  import { onMount } from "svelte";
+  import { getContext, onMount } from "svelte";
 
   export let data: PageData;
 
+  const spotify = getContext("spotify");
+
   const User = data.User;
-  let spotify = writable(defaultData);
-  $: spotify.set(data.Spotify);
-
-  onMount(() => {
-    async function refreshSpotify() {
-      console.log("refreshing spotify");
-      const res = await fetch("/spotify");
-      const data = await res.json();
-      spotify.set(data);
-      setTimeout(
-        refreshSpotify,
-        Math.min(10000, $spotify.song.duration - $spotify.song.time)
-      );
-    }
-
-    setTimeout(
-      refreshSpotify,
-      Math.min(10000, $spotify.song.duration - $spotify.song.time)
-    );
-  });
 </script>
 
 <div class="discordEmbed">
