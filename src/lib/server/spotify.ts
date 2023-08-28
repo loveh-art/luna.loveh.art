@@ -17,6 +17,8 @@ const enablePuppeteer = env.SPOTIFY_PASSWORD && env.SPOTIFY_PASSWORD !== "";
 
 let alertCooldown = false;
 
+let ratelimited = false;
+
 export let lastKnownSong: iSong = defaultSong;
 
 interface iPersistData {
@@ -126,6 +128,7 @@ async function refreshAuth(): Promise<boolean> {
 }
 
 export async function getData(): Promise<iSpotifyData> {
+  if (ratelimited) return { song: defaultSong };
   try {
     const userData = (await spotify.getMe()).body;
     const nowPlaying = (await spotify.getMyCurrentPlaybackState()).body;
@@ -160,7 +163,12 @@ export async function getData(): Promise<iSpotifyData> {
     return output;
   } catch (error) {
     if ((error as any).statusCode !== 401) console.error(error);
-    refreshAuth();
+    if ((error as any).statusCode === 429) {
+      ratelimited = true;
+      setTimeout(() => (ratelimited = false), 1000 * 60 * 5);
+    } else {
+      refreshAuth();
+    }
     return {
       song: defaultSong,
     };
