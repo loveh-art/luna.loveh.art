@@ -20,9 +20,7 @@
 <h3>Links</h3>
 <div class="links">
   {#each Object.entries(AboutMe.links) as link}
-  <div>
     <a href={link[1]} target="_blank">{link[0]}</a>
-  </div>
   {/each}
 </div>
 
@@ -31,11 +29,10 @@
 <Spotify Data={data.Spotify} />
 
 <style lang="scss">
-  .links div {
-    a {
+  .links a {
+
       color: unset;
       text-decoration: unset;
-    }
     display: inline;
     height: 10px;
     padding: 5px;
