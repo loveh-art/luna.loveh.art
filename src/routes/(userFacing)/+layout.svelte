@@ -28,6 +28,12 @@
   });
 </script>
 
+<head>
+  <meta content="Luna :3" property="og:title"/>
+  <meta content="My website!" property="og:description"/>
+  <meta content="#ffcb82" property="theme-color"/>
+</head>
+
 <div class="header">
   <div class="fa"><Fa icon={faSpotify} /></div>
   <p>{$spotify.song.name} - {$spotify.song.artist}</p>
