@@ -1,7 +1,7 @@
-pipeline:
+steps:
   deploy:
     image: alpine
-    secrets: [ssh_private_key, server_ip, ssh_user, deploy_path]
+    secrets: [ssh_private_key, server_ip, ssh_user, deploy_path, compose_file]
     commands:
       - apk add --no-cache openssh
       - mkdir -p ~/.ssh
