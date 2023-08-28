@@ -8,9 +8,9 @@
   import { faSpotify } from "@fortawesome/free-brands-svg-icons";
 
   export let data: PageData;
-  let spotify = writable(defaultData);
-  $: spotify.set(data);
 
+  let spotify = writable(defaultData);
+  $: spotify.set({song: data});
   setContext("spotify", spotify);
 
   onMount(() => {
@@ -24,11 +24,7 @@
         Math.min(10000, $spotify.song.duration - $spotify.song.time)
       );
     }
-
-    setTimeout(
-      refreshSpotify,
-      Math.min(10000, $spotify.song.duration - $spotify.song.time)
-    );
+    refreshSpotify();
   });
 </script>
 
@@ -53,11 +49,14 @@
     top: 0;
     left: 0;
     width: 100%;
+    padding-left: 10px;
     vertical-align: middle;
   }
   .header .fa {
     display: block;
     margin-top: auto;
+    margin-bottom: auto;
+    padding: 5px;
   }
   .page {
     padding-top: 100px;

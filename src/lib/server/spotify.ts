@@ -17,7 +17,7 @@ const enablePuppeteer = env.SPOTIFY_PASSWORD && env.SPOTIFY_PASSWORD !== "";
 
 let alertCooldown = false;
 
-let lastKnownSong: iSong = defaultSong;
+export let lastKnownSong: iSong = defaultSong;
 
 interface iPersistData {
   spotify_refresh_token?: string;

@@ -1,7 +1,7 @@
 import { DiscordUser } from "$lib/server/discord";
-import { getData } from "$lib/server/spotify";
+import { lastKnownSong } from "$lib/server/spotify";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async () => {
-  return await getData();
+  return lastKnownSong;
 };
