@@ -30,7 +30,7 @@ const spotify = new spotifyApi({
   clientSecret: env.SPOTIFY_CLIENT_SECRET,
   refreshToken: env.SPOTIFY_REFRESH_TOKEN,
   accessToken: env.SPOTIFY_ACCESS_TOKEN,
-  redirectUri: `http${env.https ? "s" : ""}://${env.SERVER}/spotify/auth`,
+  redirectUri: `http${env.HTTPS ? "s" : ""}://${env.SERVER}/spotify/auth`,
 });
 
 export const setRefreshToken = async (newToken: string) => {
