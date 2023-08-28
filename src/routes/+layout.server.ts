@@ -1,7 +1,15 @@
 import { DiscordUser } from "$lib/server/discord";
 import { lastKnownSong } from "$lib/server/spotify";
-import type { PageServerLoad } from "./$types";
+import type { LayoutServerLoad } from "./$types";
 
-export const load: PageServerLoad = async () => {
-  return lastKnownSong;
+export const load: LayoutServerLoad = async ({ url }) => {
+  return {
+    lastKnownSong,
+
+    pages: {
+      "/": "Home",
+      "/test": "Test",
+    },
+    url: url.pathname,
+  };
 };
