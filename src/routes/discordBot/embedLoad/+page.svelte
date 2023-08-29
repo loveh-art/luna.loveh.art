@@ -1,15 +1,6 @@
 <script lang="ts">
   import type { PageData } from "./$types";
 
-  import Fa from "svelte-fa";
-
-  import {
-    faCompactDisc,
-    faFolderClosed,
-    faMicrophoneLines,
-  } from "@fortawesome/free-solid-svg-icons";
-
-  import { faSpotify } from "@fortawesome/free-brands-svg-icons";
   import Spotify from "../../../components/Spotify.svelte";
 
   export let data: PageData;

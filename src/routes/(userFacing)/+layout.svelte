@@ -1,7 +1,7 @@
 <script lang="ts">
   import { defaultData } from "$lib/spotify";
-  import { getContext, onMount } from "svelte";
-  import { writable, type Writable } from "svelte/store";
+  import { onMount } from "svelte";
+  import { writable } from "svelte/store";
   import type { LayoutData } from "./$types";
   import { setContext } from "svelte";
   import Fa from "svelte-fa";
@@ -34,10 +34,6 @@
 
   const numShiggies = writable(0);
   setContext("numShiggies", numShiggies);
-
-  function shiggySwarm() {
-    numShiggies.update((num) => num + 1);
-  }
 </script>
 
 <svelte:head>
@@ -61,8 +57,13 @@
     {/each}
   </div> -->
   <div class="right">
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <img src="/img/bigshiggy.gif" alt="shiggy" on:click={shiggySwarm} />
+    <button
+      on:click={() => {
+        numShiggies.update((num) => num + 1);
+      }}
+    >
+      <img src="/img/bigshiggy.gif" alt="shiggy" />
+    </button>
   </div>
 </div>
 <div class="page">
@@ -95,7 +96,7 @@
     margin-right: 10px;
   }
 
-  .header img {
+  .header button {
     height: 50px;
     width: 50px;
     margin-left: auto;

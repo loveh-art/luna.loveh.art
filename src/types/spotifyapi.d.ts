@@ -101,3 +101,7 @@ interface TrackObjectSimplified {
    */
   uri: string;
 }
+
+interface WebapiRegularError extends Error {
+  statusCode?: number;
+}

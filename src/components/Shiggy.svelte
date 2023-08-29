@@ -1,6 +1,6 @@
 <script lang="ts">
   import { writable, type Writable } from "svelte/store";
-  import { getContext, onMount, setContext } from "svelte";
+  import { getContext, onMount } from "svelte";
 
   const numShiggies = getContext<Writable<number>>("numShiggies");
 
@@ -44,16 +44,15 @@
 
 <div class="shiggyWrapper">
   {#each $shigList as shiggy}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <img
-      style={`left: ${shiggy.x}px; top: ${shiggy.y}px;`}
+    <button
       class="shiggy"
-      src="/img/bigshiggy.gif"
-      alt="shiggy"
+      style={`left: ${shiggy.x}px; top: ${shiggy.y}px;`}
       on:click={() => {
         numShiggies.update((num) => num + 1);
       }}
-    />
+    >
+      <img src="/img/bigshiggy.gif" alt="shiggy" />
+    </button>
   {/each}
 </div>
 

@@ -1,7 +1,4 @@
-import type {
-  RESTPostAPIWebhookWithTokenJSONBody,
-  RESTPostAPIWebhookWithTokenResult,
-} from "discord-api-types/v10";
+import type { RESTPostAPIWebhookWithTokenJSONBody } from "discord-api-types/v10";
 
 import * as env from "$env/static/private";
 

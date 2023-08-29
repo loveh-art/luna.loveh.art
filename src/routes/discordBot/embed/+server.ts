@@ -1,5 +1,3 @@
-import { getData } from "$lib/server/spotify";
-import { redirect } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 
 import * as env from "$env/static/private";

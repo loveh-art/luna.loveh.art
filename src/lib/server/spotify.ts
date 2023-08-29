@@ -21,12 +21,6 @@ let ratelimited = false;
 
 export let lastKnownSong: iSong = defaultSong;
 
-interface iPersistData {
-  spotify_refresh_token?: string;
-  spotify_access_token?: string;
-  lastKnownSong?: iSong;
-}
-
 const spotify = new spotifyApi({
   clientId: env.SPOTIFY_CLIENT_ID,
   clientSecret: env.SPOTIFY_CLIENT_SECRET,
@@ -59,7 +53,7 @@ async function refreshAuth(): Promise<boolean> {
     spotify.setAccessToken(authData.body["access_token"]);
     spotify.setRefreshToken(authData.body["refresh_token"]);
 
-    let me = (await spotify.getMe()).body;
+    const me = (await spotify.getMe()).body;
     if (me.id !== env.SPOTIFY_OWNER_ID) {
       spotify.setAccessToken(oldAccessToken || "");
       spotify.setRefreshToken(oldRefreshToken);
@@ -108,7 +102,7 @@ async function refreshAuth(): Promise<boolean> {
         await page.keyboard.type(env.SPOTIFY_OWNER_ID);
         await page.focus("#login-password");
         await page.keyboard.type(env.SPOTIFY_PASSWORD!);
-        await page.$eval("#login-button", (el: any) => el.click());
+        await page.$eval("#login-button", (el) => (el as NoopElement).click());
         await page.waitForNavigation();
         console.log(page.url());
         await page.waitForNetworkIdle();
@@ -162,8 +156,9 @@ export async function getData(): Promise<iSpotifyData> {
     }
     return output;
   } catch (error) {
-    if ((error as any).statusCode !== 401) console.error(error);
-    if ((error as any).statusCode === 429) {
+    console.error(error);
+    if ((error as WebapiRegularError).statusCode !== 401) console.error(error);
+    if ((error as WebapiRegularError).statusCode === 429) {
       ratelimited = true;
       setTimeout(() => (ratelimited = false), 1000 * 60 * 5);
     } else {

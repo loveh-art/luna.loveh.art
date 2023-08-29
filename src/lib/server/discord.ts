@@ -1,6 +1,7 @@
 import * as env from "$env/static/private";
 
 import { type APIUser, UserFlags } from "discord-api-types/v10";
+import type { iDiscordUser } from "../../types/Discord";
 
 interface iClientModBadge {
   name: string;
@@ -31,6 +32,14 @@ export let DiscordUser: iDiscordUser = {
   flagImages: {},
   id: "0",
 };
+
+interface objResponse {
+  badge: string;
+  name: string;
+}
+interface badgeApiResponse {
+  [key: string]: string[] | objResponse[];
+}
 async function updateData() {
   const data = await fetch(
     `https://discord.com/api/v10/users/${env.DISCORD_OWNER_ID}`,
@@ -41,7 +50,7 @@ async function updateData() {
     },
   );
   const json = (await data.json()) as APIUser;
-  let _DiscordUser: iDiscordUser = {
+  const _DiscordUser: iDiscordUser = {
     username: json.username,
     displayName: json.global_name || json.username,
     banner_color: `#${json.accent_color?.toString(16)}` || "#27292b",
@@ -53,21 +62,19 @@ async function updateData() {
   };
   if (json.flags) {
     Object.keys(UserFlags)
-      // @ts-ignore
       .filter((key) => json.flags! & UserFlags[key])
       .map(
         (image) =>
           (_DiscordUser.flagImages[
             image
-            // @ts-ignore
           ] = `https://raw.githubusercontent.com/efeeozc/discord-badges/main/png/${flagToImage[image]}.png`),
       );
   }
 
-  const modBadges = await fetch(
+  const modBadges = (await fetch(
     `https://clientmodbadges-api.herokuapp.com/users/${_DiscordUser.id}`,
-  ).then((res) => res.json());
-  Object.entries(modBadges).forEach((data: any) => {
+  ).then((res) => res.json())) as badgeApiResponse;
+  Object.entries(modBadges).forEach((data) => {
     data[1].forEach((badge: string | iClientModBadge) => {
       if (typeof badge === "string") {
         _DiscordUser.flagImages[

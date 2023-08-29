@@ -1,4 +1,3 @@
-import { DiscordUser } from "$lib/server/discord";
 import { lastKnownSong } from "$lib/server/spotify";
 import type { LayoutServerLoad } from "./$types";
 
