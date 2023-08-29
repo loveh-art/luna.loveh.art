@@ -24,7 +24,7 @@ export const GET: RequestHandler = async ({ request }) => {
       `# <@${env.DISCORD_OWNER_ID}> The ${
         isHeadless ? " headless" : ""
       }token was **not** accepted!`,
-      { color: 0xff0000 }
+      { color: 0xff0000 },
     );
     if (isHeadless) return new Response(null, { status: 500 });
     throw redirect(302, "/");

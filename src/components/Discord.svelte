@@ -54,7 +54,9 @@
     border-radius: 0.75em;
     display: block;
     height: 48px;
-    transition: 0.2s height, 0.2s padding-top;
+    transition:
+      0.2s height,
+      0.2s padding-top;
     overflow: hidden;
     font-family: "gg sans";
   }

@@ -15,7 +15,11 @@
   export let data: PageData;
 </script>
 
-<Spotify Data={data} Rounded={false} Animated={false} />
+{#if data.song.name !== "Nothing Playing"}
+  <Spotify Data={data} Rounded={false} Animated={false} />
+{:else}
+  <p>nothing</p>
+{/if}
 
 <style>
   :global(body) {

@@ -17,7 +17,7 @@ export class Logger {
     prefix: string,
     fileName: string,
     discord: boolean = false,
-    color: number = 0
+    color: number = 0,
   ) {
     this.prefix = `[${prefix}]`;
     this.discord = discord;
@@ -27,7 +27,7 @@ export class Logger {
 
   log(
     message: string | RESTPostAPIWebhookWithTokenJSONBody,
-    _options?: { discord?: boolean; color?: number }
+    _options?: { discord?: boolean; color?: number },
   ): string {
     console.log(`${this.prefix} ${message}`);
     const options = _options || {};
@@ -54,7 +54,7 @@ export class Logger {
 }
 
 export function sendWebhookMessage(
-  content: RESTPostAPIWebhookWithTokenJSONBody
+  content: RESTPostAPIWebhookWithTokenJSONBody,
 ): void {
   fetch(env.DISCORD_WEBHOOK_URL, {
     method: "POST",

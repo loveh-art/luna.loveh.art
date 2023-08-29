@@ -38,7 +38,7 @@ async function updateData() {
       headers: {
         Authorization: `Bot ${env.DISCORD_BOT_TOKEN}`,
       },
-    }
+    },
   );
   const json = (await data.json()) as APIUser;
   let _DiscordUser: iDiscordUser = {
@@ -60,12 +60,12 @@ async function updateData() {
           (_DiscordUser.flagImages[
             image
             // @ts-ignore
-          ] = `https://raw.githubusercontent.com/efeeozc/discord-badges/main/png/${flagToImage[image]}.png`)
+          ] = `https://raw.githubusercontent.com/efeeozc/discord-badges/main/png/${flagToImage[image]}.png`),
       );
   }
 
   const modBadges = await fetch(
-    `https://clientmodbadges-api.herokuapp.com/users/${_DiscordUser.id}`
+    `https://clientmodbadges-api.herokuapp.com/users/${_DiscordUser.id}`,
   ).then((res) => res.json());
   Object.entries(modBadges).forEach((data: any) => {
     data[1].forEach((badge: string | iClientModBadge) => {

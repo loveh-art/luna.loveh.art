@@ -48,7 +48,7 @@ setInterval(
       spotify.setRefreshToken(newTokens.refresh_token);
     }
   },
-  1000 * 60 * 50
+  1000 * 60 * 50,
 );
 
 async function refreshAuth(): Promise<boolean> {
@@ -91,7 +91,7 @@ async function refreshAuth(): Promise<boolean> {
       const state = randomBytes(20).toString("hex");
       const authUrl = spotify.createAuthorizeURL(
         ["user-read-currently-playing", "user-read-playback-state"],
-        state
+        state,
       );
 
       if (enablePuppeteer) {
@@ -116,7 +116,7 @@ async function refreshAuth(): Promise<boolean> {
         await browser.close().catch(console.log);
       } else {
         logger.log(
-          `<@${env.DISCORD_OWNER_ID}> The refresh token has expired. Please re-authenticate [here](${authUrl})`
+          `<@${env.DISCORD_OWNER_ID}> The refresh token has expired. Please re-authenticate [here](${authUrl})`,
         );
       }
       return false;

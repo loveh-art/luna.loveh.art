@@ -23,7 +23,11 @@
   }
 </script>
 
-<div class={`spotify ${Rounded ? "rounded" : ""}`}>
+<div
+  class={`spotify ${Rounded ? "rounded" : ""} ${
+    $spotify.song.name === "Nothing Playing" && "collapsed"
+  }`}
+>
   <div class="spotifyBanner" />
   <img
     class={`spotifyAlbumArt ${Animated ? "animated" : ""}`}
@@ -35,47 +39,43 @@
       <a class="spotifySongName" href={$spotify.song.albumUrl}
         >{$spotify.song.name}</a
       >
-      <div
-        class:list={[
-          "spotifyArtistSpace",
-          !$spotify.song.artist ? "hidden" : "",
-        ]}
-      >
-        &nbsp;-&nbsp;
-      </div>
-      <a
-        class:list={["spotifyArtistUrl", !$spotify.song.artist ? "hidden" : ""]}
-        href={$spotify.song.artistUrl}
-      >
-        <Fa icon={faMicrophoneLines} />
-        &nbsp;
-        <div class="selector">{$spotify.song.artist}</div>
-      </a>
+      {#if $spotify.song.artist}
+        <div class="spotifyArtistSpace">&nbsp;-&nbsp;</div>
+        <a class="spotifyArtistUrl" href={$spotify.song.artistUrl}>
+          <Fa icon={faMicrophoneLines} />
+          &nbsp;
+          <div class="selector">{$spotify.song.artist}</div>
+        </a>
+      {/if}
     </div>
-    <a
-      class:list={[
-        "spotifyAlbum",
-        $spotify.song.album === $spotify.song.name ? "hidden" : "",
-      ]}
-      href={$spotify.song.albumUrl}
-    >
-      <Fa icon={faCompactDisc} />
-      &nbsp;
-      <div class="selector">
-        {$spotify.song.album}
-      </div>
-    </a>
-    <a
-      class:list={[
-        "spotifyPlaylist",
-        !$spotify.song.playlistUrl ? "hidden" : "",
-      ]}
-      href={$spotify.song.playlistUrl}
-    >
-      <Fa icon={faFolderClosed} />
-      &nbsp;
-      <div class="selector">{$spotify.song.playlist}</div>
-    </a>
+    {#if $spotify.song.album && $spotify.song.album !== "Nothing Playing"}
+      <a
+        class:list={[
+          "spotifyAlbum",
+          $spotify.song.album === $spotify.song.name ? "hidden" : "",
+        ]}
+        href={$spotify.song.albumUrl}
+      >
+        <Fa icon={faCompactDisc} />
+        &nbsp;
+        <div class="selector">
+          {$spotify.song.album}
+        </div>
+      </a>
+    {/if}
+    {#if $spotify.song.playlist}
+      <a
+        class:list={[
+          "spotifyPlaylist",
+          !$spotify.song.playlistUrl ? "hidden" : "",
+        ]}
+        href={$spotify.song.playlistUrl}
+      >
+        <Fa icon={faFolderClosed} />
+        &nbsp;
+        <div class="selector">{$spotify.song.playlist}</div>
+      </a>
+    {/if}
     <br class="spotifyLineBreak" />
     <a class="spotifyIcon" href="https://open.spotify.com">
       <Fa icon={faSpotify} />
@@ -112,6 +112,12 @@
     flex-direction: row;
     background-color: #2b2d31;
     color: #ffffff;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+  }
+
+  .spotify.collapsed {
+    height: 0px;
   }
   .spotify.rounded {
     border-radius: 0.75em;

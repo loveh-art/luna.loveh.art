@@ -14,15 +14,19 @@
   $: spotify.set({ song: data.lastKnownSong });
   setContext("spotify", spotify);
 
+  let timeout = 10000;
+
   onMount(() => {
     async function refreshSpotify() {
       console.log("refreshing spotify");
       const res = await fetch("/spotify");
       const data = await res.json();
       spotify.set(data);
+      if ($spotify.song.name === "Nothing Playing") timeout = 20000;
+      else timeout = 10000;
       setTimeout(
         refreshSpotify,
-        Math.min(10000, $spotify.song.duration - $spotify.song.time)
+        Math.min(timeout, $spotify.song.duration - $spotify.song.time),
       );
     }
     refreshSpotify();
@@ -57,6 +61,7 @@
     {/each}
   </div> -->
   <div class="right">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <img src="/img/bigshiggy.gif" alt="shiggy" on:click={shiggySwarm} />
   </div>
 </div>
