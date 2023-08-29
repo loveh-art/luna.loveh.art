@@ -1,24 +1,32 @@
 <script lang="ts">
   import type { iSpotifyData } from "$lib/spotify";
   import { faSpotify } from "@fortawesome/free-brands-svg-icons";
-  import { faCompactDisc, faFolderClosed, faMicrophoneLines } from "@fortawesome/free-solid-svg-icons";
+  import {
+    faCompactDisc,
+    faFolderClosed,
+    faMicrophoneLines,
+  } from "@fortawesome/free-solid-svg-icons";
   import { getContext } from "svelte";
 
   import Fa from "svelte-fa";
-  import type { Writable } from "svelte/store";
+  import { writable, type Writable } from "svelte/store";
 
-  export let Data: iSpotifyData;
+  export let Data: iSpotifyData | undefined = undefined;
 
-  const spotify = getContext<Writable<iSpotifyData>>("spotify");
-  $: spotify.set(Data);
+  export let Rounded: boolean = true;
+  export let Animated: boolean = true;
 
+  let spotify = getContext<Writable<iSpotifyData>>("spotify");
+
+  if (!spotify && Data) {
+    spotify = writable(Data);
+  }
 </script>
 
-
-<div class="spotify">
+<div class={`spotify ${Rounded ? "rounded" : ""}`}>
   <div class="spotifyBanner" />
   <img
-    class="spotifyAlbumArt"
+    class={`spotifyAlbumArt ${Animated ? "animated" : ""}`}
     src={$spotify.song.image}
     alt={$spotify.song.name}
   />
@@ -83,7 +91,6 @@
 </div>
 
 <style>
-
   @keyframes rotate {
     from {
       transform: rotate(0deg);
@@ -100,13 +107,14 @@
     min-width: 340px;
     width: fit-content;
     height: 100px;
-    border-radius: 0.75em;
     display: flex;
     position: relative;
     flex-direction: row;
-    font-family: "gg sans";
     background-color: #2b2d31;
     color: #ffffff;
+  }
+  .spotify.rounded {
+    border-radius: 0.75em;
   }
   .spotifyBanner {
     border-top-left-radius: 0.75em;
@@ -129,8 +137,12 @@
     height: 48px;
     border-radius: 50%;
     z-index: 2;
+  }
+
+  .spotifyAlbumArt.animated {
     animation: rotate 5s infinite linear;
   }
+
   .spotifyNames {
     display: flex;
     flex-direction: column;

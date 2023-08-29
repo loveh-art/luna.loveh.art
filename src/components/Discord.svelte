@@ -1,7 +1,7 @@
 <script lang="ts">
   import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 
-  import Fa from "svelte-fa"
+  import Fa from "svelte-fa";
 
   export let User: iDiscordUser;
 </script>

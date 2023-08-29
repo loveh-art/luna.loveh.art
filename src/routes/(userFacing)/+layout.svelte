@@ -10,7 +10,7 @@
   export let data: LayoutData;
 
   let spotify = writable(defaultData);
-  $: spotify.set({song: data.lastKnownSong});
+  $: spotify.set({ song: data.lastKnownSong });
   setContext("spotify", spotify);
 
   onMount(() => {
@@ -29,9 +29,9 @@
 </script>
 
 <head>
-  <meta content="Luna :3" property="og:title"/>
-  <meta content="My website!" property="og:description"/>
-  <meta content="#ffcb82" property="theme-color"/>
+  <meta content="Luna :3" property="og:title" />
+  <meta content="My website!" property="og:description" />
+  <meta content="#ffcb82" property="theme-color" />
 </head>
 
 <div class="header">
@@ -48,6 +48,9 @@
       </a>
     {/each}
   </div> -->
+  <div class="right">
+    <img src="/img/bigshiggy.gif" alt="shiggy" />
+  </div>
 </div>
 <div class="page">
   <slot />
@@ -71,6 +74,18 @@
     width: 100%;
     padding-left: 10px;
     vertical-align: middle;
+  }
+
+  .header .right {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+
+  .header img {
+    height: 50px;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .header .fa {

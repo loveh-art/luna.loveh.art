@@ -5,8 +5,14 @@
 
   import Discord from "../../components/Discord.svelte";
   import Spotify from "../../components/Spotify.svelte";
+  import type { iSpotifyData } from "$lib/spotify";
+  import { getContext } from "svelte";
+  import type { Writable } from "svelte/store";
 
   export let data: PageData;
+
+  const spotify = getContext<Writable<iSpotifyData>>("spotify");
+  $: spotify.set(data.Spotify);
 </script>
 
 <h1>Luna :3</h1>
@@ -26,13 +32,12 @@
 
 <Discord User={data.User} />
 
-<Spotify Data={data.Spotify} />
+<Spotify />
 
 <style lang="scss">
   .links a {
-
-      color: unset;
-      text-decoration: unset;
+    color: unset;
+    text-decoration: unset;
     display: inline;
     height: 10px;
     padding: 5px;
