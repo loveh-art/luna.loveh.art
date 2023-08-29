@@ -1,10 +1,10 @@
-<head>
+<svelte:head>
   <meta content="Shiggy" property="og:title" />
   <meta content="https://lvna.gay/img/bigshiggy.gif" property="og:image" />
   <meta content="https://lvna.gay/img/bigshiggy.gif" property="og:url" />
   <meta content="Shiggy" property="og:description" />
   <meta content="#ffcb82" property="theme-color" />
-</head>
+</svelte:head>
 
 <img src="/img/bigshiggy.gif" alt="shiggy" />
 

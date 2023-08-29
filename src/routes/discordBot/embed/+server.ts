@@ -8,7 +8,9 @@ import puppeteer from "puppeteer";
 
 export const GET: RequestHandler = async () => {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: "new",
+    args: env.PROD ? ["--no-sandbox", "--disable-setuid-sandbox"] : [],
+    executablePath: env.CHROME_PATH || "",
   });
   const page = await browser.newPage();
   await page.setViewport({ width: 340, height: 100 });
