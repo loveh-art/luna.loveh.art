@@ -1,7 +1,10 @@
 import { redirect, type Handle } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
-  if (event.request.headers.get("user-agent")?.includes("Discordbot")) {
+  if (
+    event.request.headers.get("user-agent")?.includes("discordBot") &&
+    !event.url.pathname.startsWith("/discordBot/")
+  ) {
     throw redirect(302, "/discordBot/" + event.url.pathname);
   }
   const response = await resolve(event);
