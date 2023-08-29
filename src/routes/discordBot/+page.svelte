@@ -10,4 +10,5 @@
   <meta content={data.song.albumUrl} property="og:url" />
   <meta content={data.song.artist} property="og:description" />
   <meta content="#ffcb82" property="theme-color" />
+  <meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
