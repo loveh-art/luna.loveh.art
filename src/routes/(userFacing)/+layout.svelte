@@ -57,6 +57,8 @@
     {/each}
   </div> -->
   <div class="right">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img
       src="/img/bigshiggy.gif"
       alt="shiggy"
