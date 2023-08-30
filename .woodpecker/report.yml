@@ -9,7 +9,7 @@ steps:
       - curl -X POST -H "Content-type:\ application/json" --data "{\"embeds\":[{\"title\":\"Workflows Failed\",\"color\":16711680,\"url\":\"$CI_PIPELINE_URL\"}]}" $WEBHOOK
 
 when:
-  - status: [failure]
+  - status: "failure"
 depends_on:
   - lint
   - deploy
