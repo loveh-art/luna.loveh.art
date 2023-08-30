@@ -1,0 +1,6 @@
+steps:
+  lint:
+    image: node:18-alpine
+    commands:
+      - yarn install
+      - yarn run lint

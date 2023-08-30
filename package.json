@@ -4,6 +4,7 @@
   "scripts": {
     "start": "node ./build/index.js",
     "dev": "vite dev",
+    "lint": "eslint src",
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig tsconfig.json",

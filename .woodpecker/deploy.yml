@@ -1,3 +1,5 @@
+skip_clone: true
+
 steps:
   deploy:
     image: alpine
