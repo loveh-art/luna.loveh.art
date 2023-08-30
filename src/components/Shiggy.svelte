@@ -44,15 +44,17 @@
 
 <div class="shiggyWrapper">
   {#each $shigList as shiggy}
-    <button
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+    <img
+      src="/img/bigshiggy.gif"
+      alt="shiggy"
       class="shiggy"
-      style={`left: ${shiggy.x}px; top: ${shiggy.y}px;`}
       on:click={() => {
         numShiggies.update((num) => num + 1);
       }}
-    >
-      <img src="/img/bigshiggy.gif" alt="shiggy" />
-    </button>
+      style={`left: ${shiggy.x}px; top: ${shiggy.y}px;`}
+    />
   {/each}
 </div>
 

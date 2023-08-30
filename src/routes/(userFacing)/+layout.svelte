@@ -57,13 +57,15 @@
     {/each}
   </div> -->
   <div class="right">
-    <button
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+    <img
+      src="/img/bigshiggy.gif"
+      alt="shiggy"
       on:click={() => {
         numShiggies.update((num) => num + 1);
       }}
-    >
-      <img src="/img/bigshiggy.gif" alt="shiggy" />
-    </button>
+    />
   </div>
 </div>
 <div class="page">
@@ -96,11 +98,16 @@
     margin-right: 10px;
   }
 
-  .header button {
+  .header img {
     height: 50px;
     width: 50px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .header button img {
+    height: 50px;
+    width: 50px;
   }
 
   .header .fa {
