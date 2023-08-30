@@ -12,3 +12,12 @@ steps:
       - ssh-keyscan -t rsa "$SERVER_IP" >> ~/.ssh/known_hosts
       - echo Deploying
       - ssh -i ~/.ssh/id_rsa $SSH_USER@$SERVER_IP "cd $DEPLOY_PATH && git pull origin main && sudo docker compose -f $COMPOSE_FILE up -d --build --wait"
+
+  report:
+    image: alpine
+    secrets: [webhook]
+    when:
+      status: [failure]
+    commands:
+      - apk add --no-cache curl
+      - curl -X POST -H "Content-type:\ application/json" --data "{\"embeds\":[{\"title\":\"Deploy Failed\",\"color\":16711680,\"url\":\"$CI_PIPELINE_URL\"}]}" $WEBHOOK

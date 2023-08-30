@@ -4,3 +4,12 @@ steps:
     commands:
       - yarn install --frozen-lockfile
       - yarn run lint
+
+  report:
+    image: alpine
+    secrets: [webhook]
+    when:
+      status: [failure]
+    commands:
+      - apk add --no-cache curl
+      - curl -X POST -H "Content-type:\ application/json" --data "{\"embeds\":[{\"title\":\"Lint Failed\",\"color\":16711680,\"url\":\"$CI_PIPELINE_URL\"}]}" $WEBHOOK
