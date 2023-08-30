@@ -12,4 +12,4 @@ steps:
       status: [failure]
     commands:
       - apk add --no-cache curl
-      - curl -X POST -H "Content-type:\ application/json" --data "{\"embeds\":[{\"title\":\"Lint Failed\",\"color\":16711680,\"url\":\"$CI_PIPELINE_URL\"}]}" $WEBHOOK
+      - curl -X POST -H "Content-type:application/json" --data "{\"embeds\":[{\"title\":\"Lint Failed\",\"color\":16711680,\"url\":\"$CI_PIPELINE_URL\"}]}" $WEBHOOK
