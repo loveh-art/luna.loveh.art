@@ -1,5 +1,3 @@
-import * as env from "$env/static/private";
-
 import { type APIUser, UserFlags } from "discord-api-types/v10";
 import type { iDiscordUser } from "../../types/Discord";
 
@@ -23,16 +21,6 @@ const flagToImage = {
   VerifiedDeveloper: "earlyverifiedbotdev",
 };
 
-export let DiscordUser: iDiscordUser = {
-  username: "Loading...",
-  displayName: "Loading...",
-  banner_color: "#27292b",
-  avatar_url:
-    "https://canary.discord.com/assets/1f0bfc0865d324c2587920a7d80c609b.png",
-  flagImages: {},
-  id: "0",
-};
-
 interface objResponse {
   badge: string;
   name: string;
@@ -40,15 +28,12 @@ interface objResponse {
 interface badgeApiResponse {
   [key: string]: string[] | objResponse[];
 }
-async function updateData() {
-  const data = await fetch(
-    `https://discord.com/api/v10/users/${env.DISCORD_OWNER_ID}`,
-    {
-      headers: {
-        Authorization: `Bot ${env.DISCORD_BOT_TOKEN}`,
-      },
+export async function updateData(ownerId: string, token: string) {
+  const data = await fetch(`https://discord.com/api/v10/users/${ownerId}`, {
+    headers: {
+      Authorization: `Bot ${token}`,
     },
-  );
+  });
   const json = (await data.json()) as APIUser;
   const _DiscordUser: iDiscordUser = {
     username: json.username,
@@ -86,7 +71,5 @@ async function updateData() {
     });
   });
 
-  DiscordUser = _DiscordUser;
+  return _DiscordUser as unknown as iDiscordUser;
 }
-await updateData();
-setInterval(updateData, 1000 * 60); // 10 minutes

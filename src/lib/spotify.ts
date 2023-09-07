@@ -27,3 +27,13 @@ export interface iSong {
   time: number;
   duration: number;
 }
+
+export let lastKnownSong: iSong = defaultSong;
+
+export async function getData(): Promise<iSpotifyData> {
+  const data: iSpotifyData = await fetch("https://spotifyapi.lvna.gay").then(
+    (res) => res.json(),
+  );
+  if (data.song.name !== "Nothing Playing") lastKnownSong = data.song;
+  return data;
+}

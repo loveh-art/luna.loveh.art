@@ -19,7 +19,7 @@
   onMount(() => {
     async function refreshSpotify() {
       console.log("refreshing spotify");
-      const res = await fetch("/spotify");
+      const res = await fetch("https://spotifyapi.lvna.gay");
       const data = await res.json();
       spotify.set(data);
       if ($spotify.song.name === "Nothing Playing") timeout = 20000;

@@ -1,4 +1,4 @@
-import { lastKnownSong } from "$lib/server/spotify";
+import { lastKnownSong } from "$lib/spotify";
 import type { LayoutServerLoad } from "./$types";
 
 export const load: LayoutServerLoad = async ({ url }) => {
