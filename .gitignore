@@ -1,4 +1,5 @@
 node_modules
 build
 .svelte-kit
-.env
+.dev.vars
+.wrangler
