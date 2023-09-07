@@ -47,7 +47,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img
-      src="/img/bigshiggy.gif"
+      src="https://shiggy.fun/api/v1/random"
       alt="shiggy"
       class="shiggy"
       on:click={() => {
