@@ -7,7 +7,7 @@ export const load: LayoutServerLoad = async ({ url }) => {
 
     pages: {
       "/": "Home",
-      "/test": "Test",
+      "/shiggy": "Shiggy",
     },
     url: url.pathname,
   };

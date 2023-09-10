@@ -30,6 +30,13 @@
       );
     }
     refreshSpotify();
+
+    // setInterval(() => {
+    //   spotify.update((spotify) => {
+    //     spotify.song.time += 1000;
+    //     return spotify;
+    //   });
+    // }, 1000);
   });
 
   const numShiggies = writable(0);
@@ -43,19 +50,20 @@
 </svelte:head>
 
 <div class="header">
-  <div class="fa"><Fa icon={faSpotify} /></div>
-  <p>{$spotify.song.name} - {$spotify.song.artist}</p>
-  <!-- <div>
-    { #each Object.entries(data.pages) as page}
-      <a href={page[1]}>
-        {#if page[0] === data.url}
-          <b>{page[0]}</b>
-        {:else}
-          {page[0]}
-        {/if}
-      </a>
-    {/each}
-  </div> -->
+  {#if $spotify.song.name !== "Nothing Playing"}
+    <div class="fa"><Fa icon={faSpotify} /></div>
+    <p>{$spotify.song.name} - {$spotify.song.artist}</p>
+    <p class="spacer">//</p>
+  {/if}
+  {#each Object.entries(data.pages) as page}
+    <a href={page[0]}>
+      {#if page[0] === data.url}
+        <p class="bold">{page[1]}</p>
+      {:else}
+        <p>{page[1]}</p>
+      {/if}
+    </a>
+  {/each}
   <div class="right">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -116,6 +124,23 @@
     margin-bottom: auto;
     padding: 5px;
   }
+
+  .header .spacer {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .header a {
+    color: #fff;
+    text-decoration: none;
+    padding-right: 10px;
+    vertical-align: middle;
+  }
+
+  .header p.bold {
+    font-weight: bold;
+  }
+
   .page {
     padding-top: 50px;
   }

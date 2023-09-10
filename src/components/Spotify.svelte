@@ -76,6 +76,11 @@
         <div class="selector">{$spotify.song.playlist}</div>
       </a>
     {/if}
+    <!-- {#if $spotify.song.duration && $spotify.song.time}
+      <div class="spotifyTime">
+        {$spotify.song.time / 1000} / {$spotify.song.duration / 1000}
+      </div>
+    {/if} -->
     <br class="spotifyLineBreak" />
     <a class="spotifyIcon" href="https://open.spotify.com">
       <Fa icon={faSpotify} />
