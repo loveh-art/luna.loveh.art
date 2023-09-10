@@ -7,10 +7,6 @@ declare namespace App {
   // interface Error {}
   // interface Platform {}
   interface Platform {
-    env: {
-      DISCORD_OWNER_ID: string;
-      DISCORD_BOT_TOKEN: string;
-    };
     context: {
       waitUntil(promise: Promise<unknown>): void;
     };

@@ -30,10 +30,16 @@ export interface iSong {
 
 export let lastKnownSong: iSong = defaultSong;
 
-export async function getData(): Promise<iSpotifyData> {
-  const data: iSpotifyData = await fetch("https://spotifyapi.lvna.gay").then(
-    (res) => res.json(),
-  );
-  if (data.song.name !== "Nothing Playing") lastKnownSong = data.song;
-  return data;
+export default async function getSpotifyData(): Promise<iSpotifyData> {
+  try {
+    const data: iSpotifyData = await fetch("https://spotifyapi.lvna.gay").then(
+      (res) => res.json(),
+    );
+    if (data.song.name !== "Nothing Playing") lastKnownSong = data.song;
+    return data;
+  } catch (e) {
+    return {
+      song: lastKnownSong,
+    };
+  }
 }

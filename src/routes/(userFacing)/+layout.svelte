@@ -8,6 +8,8 @@
   import { faSpotify } from "@fortawesome/free-brands-svg-icons";
   import Shiggy from "../../components/Shiggy.svelte";
 
+  import getSpotifyData from "$lib/spotify";
+
   export let data: LayoutData;
 
   let spotify = writable(defaultData);
@@ -19,9 +21,7 @@
   onMount(() => {
     async function refreshSpotify() {
       console.log("refreshing spotify");
-      const res = await fetch("https://spotifyapi.lvna.gay");
-      const data = await res.json();
-      spotify.set(data);
+      spotify.set(await getSpotifyData());
       if ($spotify.song.name === "Nothing Playing") timeout = 20000;
       else timeout = 10000;
       setTimeout(
