@@ -44,6 +44,7 @@
 </script>
 
 <svelte:head>
+  <title>Luna's Site</title>
   <meta content="Luna :3" property="og:title" />
   <meta content="My website!" property="og:description" />
   <meta content="#ffcb82" property="theme-color" />
@@ -87,6 +88,8 @@
 
     background-color: #333;
     color: #fff;
+
+    overflow-x: hidden;
   }
   .header {
     display: flex;
@@ -103,7 +106,6 @@
 
   .header .right {
     margin-left: auto;
-    margin-right: 10px;
   }
 
   .header img {

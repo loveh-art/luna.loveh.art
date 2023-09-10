@@ -1,4 +1,5 @@
 <svelte:head>
+  <title>Shiggy</title>
   <meta content="Shiggy" property="og:title" />
   <meta content="https://lvna.gay/img/bigshiggy.gif" property="og:image" />
   <meta content="https://lvna.gay/img/bigshiggy.gif" property="og:url" />
