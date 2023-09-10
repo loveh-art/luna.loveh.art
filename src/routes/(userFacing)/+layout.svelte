@@ -68,7 +68,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img
-      src="https://shiggy.fun/api/v1/random"
+      src={`https://shiggy.fun/api/v2/random?cachebust=${Math.random()}`}
       alt="shiggy"
       on:click={() => {
         numShiggies.update((num) => num + 1);
