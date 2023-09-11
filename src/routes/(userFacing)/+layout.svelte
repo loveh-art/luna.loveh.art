@@ -9,6 +9,7 @@
   import Shiggy from "../../components/Shiggy.svelte";
 
   import getSpotifyData from "$lib/spotify";
+  import Discord from "../../components/Discord.svelte";
 
   export let data: LayoutData;
 
@@ -48,102 +49,39 @@
   <meta content="Luna :3" property="og:title" />
   <meta content="My website!" property="og:description" />
   <meta content="#ffcb82" property="theme-color" />
+  <link rel="stylesheet" href="/theme.css" />
 </svelte:head>
-
-<div class="header">
-  {#if $spotify.song.name !== "Nothing Playing"}
-    <div class="fa"><Fa icon={faSpotify} /></div>
-    <p>{$spotify.song.name} - {$spotify.song.artist}</p>
-    <p class="spacer">//</p>
-  {/if}
-  {#each Object.entries(data.pages) as page}
-    <a href={page[0]}>
-      {#if page[0] === data.url}
-        <p class="bold">{page[1]}</p>
-      {:else}
-        <p>{page[1]}</p>
-      {/if}
-    </a>
-  {/each}
-  <div class="right">
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-    <img
-      src={`https://shiggy.fun/api/v2/random?cachebust=${Math.random()}`}
-      alt="shiggy"
-      on:click={() => {
-        numShiggies.update((num) => num + 1);
-      }}
-    />
-  </div>
-</div>
-<div class="page">
+<Shiggy />
+<div id="app-root">
   <slot />
 </div>
-<Shiggy />
 
-<style>
+<style lang="scss">
+  #app-root {
+    background-color: var(--ctp-surface0);
+    color: var(--ctp-text);
+    width: fit-content;
+    padding: 10px;
+    border-radius: 50px;    
+    margin: 0;
+
+  }
   :global(body) {
+    margin: 0;
+    padding: 0;
+  }
+  :global(#svelte) {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
-    background-color: #333;
-    color: #fff;
+    background-color: var(--ctp-base);
+    color: #cdd6f4;
 
-    overflow-x: hidden;
-  }
-  .header {
-    display: flex;
-    flex-direction: row;
-    vertical-align: middle;
-    background-color: #999;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding-left: 10px;
-    vertical-align: middle;
-  }
-
-  .header .right {
-    margin-left: auto;
-  }
-
-  .header img {
-    height: 50px;
-    width: 50px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .header button img {
-    height: 50px;
-    width: 50px;
-  }
-
-  .header .fa {
-    display: block;
-    margin-top: auto;
-    margin-bottom: auto;
-    padding: 5px;
-  }
-
-  .header .spacer {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .header a {
-    color: #fff;
-    text-decoration: none;
-    padding-right: 10px;
-    vertical-align: middle;
-  }
-
-  .header p.bold {
-    font-weight: bold;
-  }
-
-  .page {
-    padding-top: 50px;
   }
 </style>

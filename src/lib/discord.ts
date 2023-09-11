@@ -1,4 +1,4 @@
-interface iDiscordUser {
+export interface iDiscordUser {
   username: string;
   displayName: string;
   banner_color: string;

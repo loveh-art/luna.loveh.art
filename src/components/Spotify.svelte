@@ -5,6 +5,7 @@
     faCompactDisc,
     faFolderClosed,
     faMicrophoneLines,
+    faMusic,
   } from "@fortawesome/free-solid-svg-icons";
   import { getContext } from "svelte";
 
@@ -24,51 +25,47 @@
 </script>
 
 <div
-  class={`spotify ${Rounded ? "rounded" : ""} ${
-    $spotify.song.name === "Nothing Playing" && "collapsed"
-  }`}
+  class="spotify"
+  class:rounded={Rounded}
+  class:collapsed={$spotify.song.name === "Nothing Playing"}
 >
-  <div class="spotifyBanner" />
   <img
-    class={`spotifyAlbumArt ${Animated ? "animated" : ""}`}
+    class="spotifyAlbumArt"
+    class:animated={Animated}
+
     src={$spotify.song.image}
     alt={$spotify.song.name}
   />
   <div class="spotifyNames">
-    <div class="spotifySong">
-      <a class="spotifySongName" href={$spotify.song.albumUrl}
-        >{$spotify.song.name}</a
-      >
-      {#if $spotify.song.artist}
-        <div class="spotifyArtistSpace">&nbsp;-&nbsp;</div>
-        <a class="spotifyArtistUrl" href={$spotify.song.artistUrl}>
-          <Fa icon={faMicrophoneLines} />
-          &nbsp;
-          <div class="selector">{$spotify.song.artist}</div>
-        </a>
-      {/if}
-    </div>
+    <a class="s-text-line" href={$spotify.song.albumUrl}>
+      <Fa class="fa-icon" icon={faMusic} />
+      &nbsp;
+      {$spotify.song.name}
+    </a>
     {#if $spotify.song.album && $spotify.song.album !== "Nothing Playing"}
       <a
-        class:list={[
-          "spotifyAlbum",
-          $spotify.song.album === $spotify.song.name ? "hidden" : "",
-        ]}
+        class="s-text-line"
         href={$spotify.song.albumUrl}
       >
-        <Fa icon={faCompactDisc} />
+        <Fa class="fa-icon" icon={faCompactDisc} />
         &nbsp;
-        <div class="selector">
           {$spotify.song.album}
-        </div>
       </a>
     {/if}
+    {#if $spotify.song.artist}
+    <a class="s-text-line" href={$spotify.song.artistUrl}>
+      <div class="fa-icon">
+        <Fa class="fa-icon" icon={faMicrophoneLines} />
+      </div>
+      &nbsp;
+      {$spotify.song.artist}
+    </a>
+  {/if}
+
     {#if $spotify.song.playlist}
       <a
-        class:list={[
-          "spotifyPlaylist",
-          !$spotify.song.playlistUrl ? "hidden" : "",
-        ]}
+        class="spotifyPlaylist"
+        
         href={$spotify.song.playlistUrl}
       >
         <Fa icon={faFolderClosed} />
@@ -81,17 +78,19 @@
         {$spotify.song.time / 1000} / {$spotify.song.duration / 1000}
       </div>
     {/if} -->
-    <br class="spotifyLineBreak" />
+  </div>
+  <div class="spotifyIcons">
     <a class="spotifyIcon" href="https://open.spotify.com">
       <Fa icon={faSpotify} />
     </a>
+    {#if $spotify.avatarUrl}
     <a class="spotifyAvatar" href="https://open.spotify.com">
       <img
-        class={$spotify.avatarUrl ? "" : "hidden"}
         alt="Profile"
         src={$spotify.avatarUrl}
       />
     </a>
+    {/if}
   </div>
 </div>
 
@@ -105,20 +104,19 @@
     }
   }
 
-  .hidden {
-    display: none !important;
-  }
   .spotify {
     min-width: 340px;
     width: fit-content;
-    height: 100px;
+    height: 128px;
     display: flex;
     position: relative;
     flex-direction: row;
-    background-color: #2b2d31;
+    background-color: var(--ctp-surface1);
     color: #ffffff;
     overflow: hidden;
     transition: height 0.5s ease-in-out;
+    align-items: center;
+    user-select: none;
   }
 
   .spotify.collapsed {
@@ -127,23 +125,9 @@
   .spotify.rounded {
     border-radius: 0.75em;
   }
-  .spotifyBanner {
-    border-top-left-radius: 0.75em;
-    border-top-right-radius: 0.75em;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    flex-direction: column;
-    height: 30px;
-    width: 100%;
-    object-fit: cover;
-    background-color: #2b2d31;
-  }
   .spotifyAlbumArt {
     padding-left: 8px;
     padding-right: 8px;
-    padding-top: 26px;
-    padding-bottom: 26px;
     width: 48px;
     height: 48px;
     border-radius: 50%;
@@ -159,9 +143,8 @@
     flex-direction: column;
     color: #ffffff;
     justify-content: end;
-    padding-right: 20px;
-    padding-bottom: 5px;
     z-index: 2;
+    justify-self: center;
   }
   .spotifyNames a {
     color: #ffffff;
@@ -169,11 +152,7 @@
     flex-direction: row;
     display: flex;
   }
-  .spotifySong,
-  .spotifySong a,
-  .spotifySong {
-    display: inline-flex;
-  }
+
 
   .spotifyIcon {
     color: #f2f3f5;
@@ -184,6 +163,8 @@
     right: 8px;
     filter: brightness(0.8);
     z-index: 3;
+    mix-blend-mode: difference;
+
   }
   .spotifyAvatar {
     position: absolute;
@@ -195,5 +176,12 @@
     border-radius: 0 0.75em 0 0.75em;
     height: 48px;
     width: 48px;
+  }
+  .fa-icon {
+    width: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
   }
 </style>

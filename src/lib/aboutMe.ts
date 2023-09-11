@@ -1,4 +1,11 @@
-export const attributes = ["programmer", "poly", "queer", "trans", "pubby :D"];
+export const attributes = [
+  "programmer",
+  "poly",
+  "queer",
+  "trans",
+  "pubby :D",
+  "really really cute!!!",
+];
 
 export const links = {
   Twitter: "https://twitter.com/nyaboom_",

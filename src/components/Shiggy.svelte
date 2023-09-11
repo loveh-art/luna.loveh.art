@@ -38,23 +38,31 @@
         }
         return newList;
       });
-    }, 10);
+    }, 15);
   });
 </script>
 
 <div class="shiggyWrapper">
   {#each $shigList as shiggy}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-    <img
-      src={`https://shiggy.fun/api/v2/random?cachebust=${Math.random()}`}
-      alt="shiggy"
-      class="shiggy"
-      on:click={() => {
-        numShiggies.update((num) => num + 1);
-      }}
-      style={`left: ${shiggy.x}px; top: ${shiggy.y}px;`}
-    />
+    <div
+    on:click={() => {
+      numShiggies.update((num) => num + 1);
+    }}
+    on:keypress={() => {
+      numShiggies.update((num) => num + 1);
+    }}
+    role="button"
+    style="display: contents;"
+    tabindex="-1"
+    >
+      <img
+        src={`https://shiggy.fun/api/v2/random?cachebust=${Math.random()}`}
+        alt="shiggy"
+        class="shiggy"
+
+        style={`left: ${shiggy.x}px; top: ${shiggy.y}px;`}
+      />
+    </div>
   {/each}
 </div>
 
@@ -69,6 +77,7 @@
     z-index: 9999;
     pointer-events: none;
     overflow: hidden;
+    transition: all 0.1s ease-in-out;
   }
 
   .shiggy {
