@@ -9,7 +9,7 @@ export interface iDiscordUser {
 
 export default async function getDiscordData(): Promise<iDiscordUser> {
   const data: iDiscordUser = await fetch(
-    "https://website-api.lvna.gay/discord/luna",
+    "https://website-api.loveh.art/discord/luna",
   ).then((res) => res.json());
   return data;
 }
