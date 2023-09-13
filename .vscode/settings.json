@@ -4,9 +4,22 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
+    "svelte",
     "html",
     "vue",
-    "markdown",
-    "svelte"
-  ]
+    "markdown"
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "svelte",
+    "html",
+    "vue",
+    "markdown"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }

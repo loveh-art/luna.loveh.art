@@ -23,13 +23,26 @@ module.exports = {
         parser: "@typescript-eslint/parser",
       },
     },
+    {
+      extends: ["plugin:@typescript-eslint/disable-type-checked"],
+      files: ["./.eslintrc.cjs", "./svelte.config.js"],
+    },
     // ...
   ],
-  plugins: ["@typescript-eslint", "prettier"],
+  plugins: ["@typescript-eslint", "prettier", "simple-import-sort"],
   rules: {
     // unused import
     "@typescript-eslint/no-unused-vars": 1,
     "prettier/prettier": 2, // Means error
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+  },
+  settings: {
+    "import/resolver": {
+      typescript: {
+        project: "./tsconfig.json",
+      },
+    },
   },
   env: {
     browser: true,

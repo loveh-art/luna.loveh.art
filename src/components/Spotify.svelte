@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { iSpotifyData } from "$lib/spotify";
   import { faSpotify } from "@fortawesome/free-brands-svg-icons";
   import {
     faCompactDisc,
@@ -8,9 +7,10 @@
     faMusic,
   } from "@fortawesome/free-solid-svg-icons";
   import { getContext } from "svelte";
-
+  import { type Writable, writable } from "svelte/store";
   import Fa from "svelte-fa";
-  import { writable, type Writable } from "svelte/store";
+
+  import type { iSpotifyData } from "$lib/spotify";
 
   export let Data: iSpotifyData | undefined = undefined;
 

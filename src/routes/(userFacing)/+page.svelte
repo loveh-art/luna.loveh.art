@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type { PageData } from "./$types";
+  import { getContext } from "svelte";
+  import type { Writable } from "svelte/store";
 
   import * as AboutMe from "$lib/aboutMe";
+  import type { iSpotifyData } from "$lib/spotify";
 
   import Discord from "../../components/Discord.svelte";
   import Spotify from "../../components/Spotify.svelte";
-  import type { iSpotifyData } from "$lib/spotify";
-  import { getContext } from "svelte";
-  import type { Writable } from "svelte/store";
+  import type { PageData } from "./$types";
 
   export let data: PageData;
 

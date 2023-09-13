@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { writable, type Writable } from "svelte/store";
   import { getContext, onMount } from "svelte";
+  import { type Writable, writable } from "svelte/store";
 
   const numShiggies = getContext<Writable<number>>("numShiggies");
 

@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { defaultData } from "$lib/spotify";
   import { onMount } from "svelte";
-  import { writable } from "svelte/store";
-  import type { LayoutData } from "./$types";
   import { setContext } from "svelte";
-  import Shiggy from "../../components/Shiggy.svelte";
+  import { writable } from "svelte/store";
 
+  import { defaultData } from "$lib/spotify";
   import getSpotifyData from "$lib/spotify";
+
+  import Shiggy from "../../components/Shiggy.svelte";
+  import type { LayoutData } from "./$types";
 
   export let data: LayoutData;
 
