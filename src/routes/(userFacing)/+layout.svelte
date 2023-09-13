@@ -4,12 +4,9 @@
   import { writable } from "svelte/store";
   import type { LayoutData } from "./$types";
   import { setContext } from "svelte";
-  import Fa from "svelte-fa";
-  import { faSpotify } from "@fortawesome/free-brands-svg-icons";
   import Shiggy from "../../components/Shiggy.svelte";
 
   import getSpotifyData from "$lib/spotify";
-  import Discord from "../../components/Discord.svelte";
 
   export let data: LayoutData;
 
@@ -62,9 +59,8 @@
     color: var(--ctp-text);
     width: fit-content;
     padding: 10px;
-    border-radius: 50px;    
+    border-radius: 50px;
     margin: 0;
-
   }
   :global(body) {
     margin: 0;
@@ -82,6 +78,5 @@
 
     background-color: var(--ctp-base);
     color: #cdd6f4;
-
   }
 </style>

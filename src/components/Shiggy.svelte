@@ -45,21 +45,20 @@
 <div class="shiggyWrapper">
   {#each $shigList as shiggy}
     <div
-    on:click={() => {
-      numShiggies.update((num) => num + 1);
-    }}
-    on:keypress={() => {
-      numShiggies.update((num) => num + 1);
-    }}
-    role="button"
-    style="display: contents;"
-    tabindex="-1"
+      on:click={() => {
+        numShiggies.update((num) => num + 1);
+      }}
+      on:keypress={() => {
+        numShiggies.update((num) => num + 1);
+      }}
+      role="button"
+      style="display: contents;"
+      tabindex="-1"
     >
       <img
         src={`https://shiggy.fun/api/v2/random?cachebust=${Math.random()}`}
         alt="shiggy"
         class="shiggy"
-
         style={`left: ${shiggy.x}px; top: ${shiggy.y}px;`}
       />
     </div>

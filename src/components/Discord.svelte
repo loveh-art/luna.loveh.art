@@ -25,20 +25,24 @@
       </div>
     </div>
   </div>
-  <div class="discordBanner" style:background-color={User.banner_color === "unset" ? "var(--ctp-surface1)" : User.banner_color}>
+  <div
+    class="discordBanner"
+    style:background-color={User.banner_color === "unset"
+      ? "var(--ctp-surface1)"
+      : User.banner_color}
+  >
     <div class="discordBadges">
       {#each Object.entries(User.flagImages) as img}
         <img class="discordBadge" src={img[1]} alt={img[0]} />
       {/each}
-      
     </div>
     <a
-        class="discordIcon"
-        href={`https://discord.com/users/${User.id}`}
-        target="_blank"
-      >
-        <Fa icon={faDiscord} setHeight={false} />
-      </a>
+      class="discordIcon"
+      href={`https://discord.com/users/${User.id}`}
+      target="_blank"
+    >
+      <Fa icon={faDiscord} setHeight={false} />
+    </a>
   </div>
 </div>
 
@@ -63,7 +67,6 @@
     font-family: "gg sans";
     height: 128px;
     user-select: none;
-
   }
 
   .discordBanner {
@@ -106,7 +109,6 @@
     filter: brightness(0.8);
     transition: 0.2s opacity;
     mix-blend-mode: difference;
-
   }
 
   .discordBadges {

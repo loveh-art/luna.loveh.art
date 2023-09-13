@@ -32,7 +32,6 @@
   <img
     class="spotifyAlbumArt"
     class:animated={Animated}
-
     src={$spotify.song.image}
     alt={$spotify.song.name}
   />
@@ -43,31 +42,24 @@
       {$spotify.song.name}
     </a>
     {#if $spotify.song.album && $spotify.song.album !== "Nothing Playing"}
-      <a
-        class="s-text-line"
-        href={$spotify.song.albumUrl}
-      >
+      <a class="s-text-line" href={$spotify.song.albumUrl}>
         <Fa class="fa-icon" icon={faCompactDisc} />
         &nbsp;
-          {$spotify.song.album}
+        {$spotify.song.album}
       </a>
     {/if}
     {#if $spotify.song.artist}
-    <a class="s-text-line" href={$spotify.song.artistUrl}>
-      <div class="fa-icon">
-        <Fa class="fa-icon" icon={faMicrophoneLines} />
-      </div>
-      &nbsp;
-      {$spotify.song.artist}
-    </a>
-  {/if}
+      <a class="s-text-line" href={$spotify.song.artistUrl}>
+        <div class="fa-icon">
+          <Fa class="fa-icon" icon={faMicrophoneLines} />
+        </div>
+        &nbsp;
+        {$spotify.song.artist}
+      </a>
+    {/if}
 
     {#if $spotify.song.playlist}
-      <a
-        class="spotifyPlaylist"
-        
-        href={$spotify.song.playlistUrl}
-      >
+      <a class="spotifyPlaylist" href={$spotify.song.playlistUrl}>
         <Fa icon={faFolderClosed} />
         &nbsp;
         <div class="selector">{$spotify.song.playlist}</div>
@@ -84,12 +76,9 @@
       <Fa icon={faSpotify} />
     </a>
     {#if $spotify.avatarUrl}
-    <a class="spotifyAvatar" href="https://open.spotify.com">
-      <img
-        alt="Profile"
-        src={$spotify.avatarUrl}
-      />
-    </a>
+      <a class="spotifyAvatar" href="https://open.spotify.com">
+        <img alt="Profile" src={$spotify.avatarUrl} />
+      </a>
     {/if}
   </div>
 </div>
@@ -153,7 +142,6 @@
     display: flex;
   }
 
-
   .spotifyIcon {
     color: #f2f3f5;
     width: 20px;
@@ -164,7 +152,6 @@
     filter: brightness(0.8);
     z-index: 3;
     mix-blend-mode: difference;
-
   }
   .spotifyAvatar {
     position: absolute;
@@ -182,6 +169,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
   }
 </style>
